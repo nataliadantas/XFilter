@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<style>
+  body { width: 280px; margin: 0; padding: 14px; font-family: system-ui, sans-serif; }
+  h1 { font-size: 14px; margin: 0 0 10px; }
+  .quick { display: flex; gap: 6px; margin-bottom: 10px; }
+  input {
+    flex: 1; padding: 8px 10px; font-size: 13px;
+    border: 1px solid #cfd9de; border-radius: 999px;
+  }
+  button { border: none; border-radius: 999px; padding: 8px 14px; font-size: 13px; font-weight: 600; cursor: pointer; background: #1d9bf0; color: #fff; }
+  button.ghost { background: transparent; color: #1d9bf0; padding: 8px 4px; }
+  #msg { font-size: 12px; color: #0a7a3d; min-height: 16px; }
+</style>
+</head>
+<body>
+  <h1>X 内容屏蔽器</h1>
+  <div class="quick">
+    <input id="kw" placeholder="输入要屏蔽的词，回车添加" spellcheck="false">
+    <button id="add">添加</button>
+  </div>
+  <div id="msg"></div>
+  <button id="open" class="ghost">打开完整屏蔽规则设置 →</button>
+  <script src="popup.js"></script>
+</body>
+</html>

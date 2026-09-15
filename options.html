@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>X 内容屏蔽器 — 屏蔽规则</title>
+<style>
+  :root { color-scheme: light dark; }
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    max-width: 640px; margin: 0 auto; padding: 32px 20px;
+    background: #f7f7f8; color: #0f1419;
+  }
+  @media (prefers-color-scheme: dark) {
+    body { background: #16181c; color: #e7e9ea; }
+    textarea { background: #202327; color: #e7e9ea; border-color: #38444d; }
+    .hint { color: #8b98a5; }
+  }
+  h1 { font-size: 20px; margin: 0 0 6px; }
+  .sub { color: #536471; font-size: 13px; margin: 0 0 20px; }
+  textarea {
+    width: 100%; min-height: 260px; box-sizing: border-box;
+    padding: 12px 14px; font-size: 14px; line-height: 1.6;
+    border: 1px solid #cfd9de; border-radius: 8px; resize: vertical;
+    font-family: inherit;
+  }
+  textarea:focus { outline: 2px solid #1d9bf0; border-color: transparent; }
+  .hint {
+    font-size: 12.5px; color: #536471; line-height: 1.7; margin: 10px 2px 16px;
+  }
+  .hint code {
+    background: rgba(0,0,0,.06); padding: 1px 6px; border-radius: 4px;
+    font-size: 12px;
+  }
+  .row { display: flex; align-items: center; gap: 12px; }
+  button {
+    background: #1d9bf0; color: #fff; border: none;
+    padding: 10px 22px; font-size: 14px; font-weight: 600;
+    border-radius: 999px; cursor: pointer;
+  }
+  button:hover { background: #1a8cd8; }
+  #status {
+    font-size: 13px; color: #0a7a3d; opacity: 0; transition: opacity .3s;
+  }
+  #status.show { opacity: 1; }
+</style>
+</head>
+<body>
+  <h1>X 内容屏蔽器 — 屏蔽规则</h1>
+  <p class="sub">每行一个关键词，含这些词或短语的帖子与回复会自动隐藏。保存后立即生效，不用刷新页面。</p>
+
+  <textarea id="rules" spellcheck="false" placeholder="每行一个屏蔽词，例如：&#10;战争&#10;广告&#10;某人的名字"></textarea>
+
+  <div class="hint">
+    说明：
+    <ul>
+      <li>普通行：同时匹配正文和用户名（不区分大小写）。例如 <code>比特币</code> 会屏蔽正文含"比特币"或用户名含"比特币"的帖子。</li>
+      <li>只看用户名：以 <code>u:</code> 开头。例如 <code>u:小明</code> 只屏蔽名字带"小明"的。</li>
+      <li>只看正文：以 <code>t:</code> 开头。例如 <code>t:广告</code> 只屏蔽正文带"广告"的。</li>
+      <li>正则行：以 <code>r:</code> 开头，匹配正文+用户名。例如 <code>r:\b(sell|buy)\b</code> 匹配独立单词 sell / buy。</li>
+      <li>以 <code>#</code> 开头的行是注释，会被忽略，适合做记录。</li>
+    </ul>
+  </div>
+
+  <div class="row">
+    <button id="save">保存规则</button>
+    <span id="status"></span>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>

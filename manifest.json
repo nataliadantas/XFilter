@@ -1,0 +1,24 @@
+{
+  "manifest_version": 3,
+  "name": "X 内容屏蔽器",
+  "version": "1.0.0",
+  "description": "自动隐藏 X (Twitter) 上包含你指定关键词的帖子与回复，规则可自行添加。",
+  "permissions": ["storage"],
+  "host_permissions": ["https://x.com/*", "https://twitter.com/*"],
+  "content_scripts": [
+    {
+      "matches": ["https://x.com/*", "https://twitter.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "options_page": "options.html",
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
+  "action": {
+    "default_title": "X 内容屏蔽器 — 管理屏蔽规则",
+    "default_popup": "popup.html"
+  }
+}
